@@ -1,0 +1,398 @@
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .features h2 {
+        font-size: 2.5rem;
+    }
+    
+    .feature-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .signup h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Mobile Large Styles */
+@media (max-width: 768px) {
+    /* Navigation */
+    .nav-items {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--primary-blue);
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+    }
+    
+    .nav-items.active {
+        display: flex;
+    }
+    
+    .nav-items a {
+        padding: 0.8rem 2rem;
+        width: 100%;
+        text-align: left;
+    }
+    
+    .mobile-menu {
+        display: flex;
+    }
+    
+    .mobile-menu.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .mobile-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    /* Hero Section */
+    .hero {
+        background-attachment: scroll;
+        min-height: 80vh;
+        padding: 2rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .cta-button {
+        padding: 12px 28px;
+        font-size: 1.1rem;
+    }
+    
+    /* Features Section */
+    .features {
+        padding: 4rem 0;
+    }
+    
+    .features h2 {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .feature-cards {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .card img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+    }
+    
+    .card h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Signup Section */
+    .signup {
+        padding: 4rem 0;
+    }
+    
+    .signup h2 {
+        font-size: 2rem;
+    }
+    
+    .signup p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .signup-form {
+        gap: 1rem;
+    }
+    
+    .signup-form input,
+    .signup-form button {
+        padding: 12px 20px;
+    }
+    
+    /* Footer */
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Mobile Small Styles */
+@media (max-width: 480px) {
+    /* Base adjustments */
+    .container {
+        padding: 0 1rem;
+    }
+    
+    /* Navigation */
+    .navbar .container {
+        padding: 0 1rem;
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        min-height: 70vh;
+        padding: 1.5rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+    
+    /* Features Section */
+    .features {
+        padding: 3rem 0;
+    }
+    
+    .features h2 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .card img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Signup Section */
+    .signup {
+        padding: 3rem 0;
+    }
+    
+    .signup h2 {
+        font-size: 1.8rem;
+    }
+    
+    .signup p {
+        font-size: 1rem;
+    }
+    
+    .signup-form input,
+    .signup-form button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 2rem 0 1.5rem;
+    }
+    
+    .footer p {
+        font-size: 0.9rem;
+    }
+    
+    .social-links a {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-links img {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.9rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+    }
+    
+    .features h2 {
+        font-size: 1.6rem;
+    }
+    
+    .signup h2 {
+        font-size: 1.6rem;
+    }
+    
+    .card {
+        padding: 1.2rem 0.8rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 1rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .cta-button {
+        padding: 8px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero {
+        background-size: cover;
+    }
+    
+    .logo,
+    .card img,
+    .social-links img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .mobile-menu,
+    .cta-button,
+    .signup-form,
+    .social-links {
+        display: none;
+    }
+    
+    .hero {
+        background: none;
+        color: black;
+        min-height: auto;
+        padding: 2rem 0;
+    }
+    
+    .hero h1 {
+        color: black;
+        text-shadow: none;
+        animation: none;
+    }
+    
+    .hero p {
+        color: black;
+    }
+    
+    .features,
+    .signup {
+        background: none;
+        color: black;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero {
+        background-attachment: scroll;
+    }
+    
+    .hero h1 {
+        animation: none;
+    }
+    
+    .content-overlay {
+        animation: none;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-blue: #000080;
+        --cornflower-blue: #0066CC;
+        --accent-orange: #FF4500;
+        --text-dark: #000000;
+        --light-gray: #F0F0F0;
+    }
+    
+    .card {
+        border: 2px solid var(--primary-blue);
+    }
+    
+    .cta-button,
+    .signup-form button {
+        border: 2px solid var(--white);
+    }
+    
+    .nav-items a:focus {
+        outline: 3px solid var(--accent-orange);
+    }
+}
