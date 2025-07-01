@@ -1,0 +1,353 @@
+/* CSS Variables */
+:root {
+    --primary-blue: #1560BD;
+    --cornflower-blue: #6495ED;
+    --accent-orange: #FF6B35;
+    --white: #FFFFFF;
+    --dark-gray: #333333;
+    --light-gray: #f8f9fa;
+    --text-dark: #2c3e50;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navigation Styles */
+.navbar {
+    background:transparent;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    backdrop-filter: blur(10px);
+}
+
+.navbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.nav-items {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-items a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-items a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-orange);
+    transition: width 0.3s ease;
+}
+
+.nav-items a:hover::after {
+    width: 100%;
+}
+
+.nav-items a:hover {
+    color: var(--accent-orange);
+}
+
+.nav-items a:focus {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+
+
+/* Hero Section */
+.hero {
+    background: transparent url('../images/gallery-hero-bg.png') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+
+.hero .container {
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+}
+
+.content-overlay {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { 
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 107, 53, 0.5); 
+    }
+    to { 
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 107, 53, 0.8); 
+    }
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    background: linear-gradient(45deg, var(--accent-orange), #ff8c42);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+}
+
+.cta-button:focus {
+    outline: 3px solid var(--accent-orange);
+    outline-offset: 2px;
+}
+
+
+/* Features Section */
+.features {
+    padding: 6rem 0;
+    background: var(--light-gray);
+}
+
+.features .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.features h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-blue);
+    position: relative;
+}
+
+.features h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(45deg, var(--accent-orange), #ff8c42);
+    border-radius: 2px;
+}
+
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
+
+.card {
+    background: var(--white);
+    padding: 0;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(100, 149, 237, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensures all cards have equal height */
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 149, 237, 0.1), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(100, 149, 237, 0.3);
+}
+
+/* Image container for consistent sizing */
+.card-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+/* Content container */
+.card-content {
+    padding: 2rem 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card p {
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin: 0;
+}
+
+/* Add a subtle gradient overlay for better text readability if needed */
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.1));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .feature-cards {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .card-image {
+        height: 180px;
+    }
+    
+    .card h3 {
+        font-size: 1.3rem;
+    }
+}

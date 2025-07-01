@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Digimon Fanbase</title>
-    <link rel="stylesheet" href="../Css/styles.css">
     <link rel="stylesheet" href="../Css/registration.css">
     <link rel="stylesheet" href="../Css/responsive.css">
 </head>
@@ -16,45 +15,124 @@
                 <a href="index.html">Home</a>
                 <a href="Gallery.html">Gallery</a>
                 <a href="registration.html">Register</a>
-                <a href="about.html">About</a>
+                <a href="submit.html">Submit</a>
             </div>
         </div>
     </nav>
 
-    <section class="registration-section" id="registration">
-        <div class="container">
-            <div class="header">
-                <h2>Register</h2>
-                <p>Fill out the form below to join our Gallery</p>
-            </div>
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
-                </div>
-                <button type="submit" class="cta-button">Register</button>
-            </form>
-            <p class="login-link">Already have an account? <a href="#">Login here</a></p>
+   <div class="registration-container">
+        <div class="header">
+            <h1>Register</h1>
+            <p>Fill out the form to participate</p>
         </div>
-    </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Digimon Fanbase. All rights reserved.</p>
-        </div>
-    </footer>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+                <div class="error-message" id="fullNameError"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="username">Username *</label>
+                    <input type="text" id="username" name="username" placeholder="5-12 characters" required>
+                    <div class="error-message" id="usernameError"></div>
+                    <div class="success-message" id="usernameSuccess"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError"></div>
+                    <div class="success-message" id="emailSuccess"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" name="password" placeholder="Min 8 characters" required>
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                    <div class="success-message" id="confirmPasswordSuccess"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="favoriteDigimon">Favorite Digimon *</label>
+                    <select id="favoriteDigimon" name="favoriteDigimon" required>
+                        <option value="">Select your favorite</option>
+                        <option value="agumon">Agumon</option>
+                        <option value="gabumon">Gabumon</option>
+                        <option value="patamon">Patamon</option>
+                        <option value="tentomon">Tentomon</option>
+                        <option value="biyomon">Biyomon</option>
+                        <option value="palmon">Palmon</option>
+                        <option value="gomamon">Gomamon</option>
+                        <option value="greymon">Greymon</option>
+                        <option value="garurumon">Garurumon</option>
+                        <option value="angemon">Angemon</option>
+                        <option value="kabuterimon">Kabuterimon</option>
+                        <option value="birdramon">Birdramon</option>
+                        <option value="togemon">Togemon</option>
+                        <option value="ikkakumon">Ikkakumon</option>
+                        <option value="wargreymon">WarGreymon</option>
+                        <option value="metalgarurumon">MetalGarurumon</option>
+                        <option value="omnimon">Omnimon</option>
+                    </select>
+                    <div class="error-message" id="favoriteDigimonError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="region">Region *</label>
+                    <select id="region" name="region" required>
+                        <option value="">Select your region</option>
+                        <option value="north-america">North America</option>
+                        <option value="south-america">South America</option>
+                        <option value="europe">Europe</option>
+                        <option value="asia">Asia</option>
+                        <option value="oceania">Oceania</option>
+                        <option value="africa">Africa</option>
+                    </select>
+                    <div class="error-message" id="regionError"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="avatar">Avatar Upload (Optional)</label>
+                <div class="file-upload">
+                    <input type="file" id="avatar" name="avatar" accept=".jpg,.jpeg,.png">
+                    <label for="avatar" class="file-upload-label">
+                        <span id="fileUploadText">Choose an avatar (JPG/PNG, max 1MB)</span>
+                    </label>
+                </div>
+                <div class="file-info" id="fileInfo"></div>
+                <div class="error-message" id="avatarError"></div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#" style="color: #3498db; text-decoration: none;">Terms and Conditions</a> and <a href="#" style="color: #3498db; text-decoration: none;">Privacy Policy</a> *</label>
+                </div>
+                <div class="error-message" id="termsError"></div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Continue</button>
+            <div style="justify-content: center;", >if you already have an account <a href="login.html" style="color: #3498db; text-decoration: none;">here</a>.</div>
+        </form>
+    </div>
+    
+
+    
+    
 
     <script src="../js/registration.js"></script>
 </body>
