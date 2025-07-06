@@ -281,14 +281,29 @@ form.addEventListener('submit', function(e) {
     const isValid = validateAllFields();
     
     if (isValid) {
-        // Simulate successful registration
+        // Collect form data
+        const userData = {
+            fullName: document.getElementById('fullName').value.trim(),
+            username: document.getElementById('username').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            favoriteDigimon: document.getElementById('favoriteDigimon').value,
+            region: document.getElementById('region').value,
+            avatar: document.getElementById('avatar').files[0] ? 
+                   document.getElementById('avatar').files[0].name : null
+        };
+        
+        // Save user to storage
+        const savedUser = digimonStorage.saveUser(userData);
+        
+        // Set as current logged-in user
+        digimonStorage.setCurrentUser(userData.username);
+        
+        // Success message
         alert('🎉 Welcome to the Digital World! Your registration was successful.');
         
         // Add to "database" to simulate uniqueness
-        const username = document.getElementById('username').value.trim();
-        const email = document.getElementById('email').value.trim();
-        existingUsers.usernames.push(username.toLowerCase());
-        existingUsers.emails.push(email.toLowerCase());
+        existingUsers.usernames.push(userData.username.toLowerCase());
+        existingUsers.emails.push(userData.email.toLowerCase());
         
         // Reset form
         form.reset();
@@ -305,6 +320,11 @@ form.addEventListener('submit', function(e) {
         document.querySelectorAll('.error-message, .success-message').forEach(msg => {
             msg.style.display = 'none';
         });
+        
+        // Redirect to gallery after 2 seconds
+        setTimeout(() => {
+            window.location.href = 'Gallery.html';
+        }, 2000);
     }
 });
 

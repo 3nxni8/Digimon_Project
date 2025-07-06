@@ -103,9 +103,6 @@ html {
     outline-offset: 2px;
     border-radius: 4px;
 }
-
-
-/* Gallery Section */
 .gallery-section {
     max-width: 1100px;
     margin: 120px auto 20px auto;
@@ -115,7 +112,17 @@ html {
     overflow: hidden;
 }
 
-.gallery-Container {
+/* Gallery Section */
+.filter-section {
+    max-width: 1100px;
+    margin: 120px auto 20px auto;
+    background: var(--light-gray);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.filter-Container {
     display: flex;
     flex-direction: column;
     gap: 20px;
