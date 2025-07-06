@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Digimon Fanbase</title>
-    <link rel="stylesheet" href="../Css/styles.css">
+    <title>submission</title>
+    <link rel="stylesheet" href="../Css/submit.css">
     <link rel="stylesheet" href="../Css/responsive.css">
 </head>
 <body>
@@ -20,26 +20,294 @@
         </div>
     </nav>
 
-    <section class="about-us">
-        <div class="container">
-            <h1>About Digimon Fanbase</h1>
-            <p>Welcome to the Digimon Fanbase, a community dedicated to everything Digimon!</p>
-            <p>Our mission is to provide a platform for fans to connect, share their creations, and explore the vast world of Digital Monsters.</p>
-            <p>This project was created to bring together fans and allow them to showcase their own Digimon creations, discuss theories, and participate in community events.</p>
-
-            <h2>Our Team</h2>
-            <p>We are a passionate group of Digimon enthusiasts who believe in the power of community and creativity.</p>
-
-            <h2>Contact Us</h2>
-            <p>Have questions or suggestions? Feel free to reach out to us through our social media channels or contact form (to be added).</p>
+    <div class="submit-container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-bolt"></i>
+                Digimon Submission
+            </h1>
+            <p>Create your own unique Digimon and share it with the community!</p>
+            
         </div>
-    </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Digimon Fanbase. All rights reserved.</p>
+        <div class="form-content">
+            <form id="digimonForm" name="digimonSubmission">
+                <!-- Basic Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-shield-alt"></i>
+                        Basic Information
+                    </h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="digimonName">
+                                Digimon Name <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="digimonName" 
+                                name="digimonName" 
+                                class="form-control"
+                                placeholder="Enter Digimon name (3-20 chars)"
+                                maxlength="20"
+                                required
+                            >
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="digivolLevel">
+                                Digivolution Level <span class="required">*</span>
+                            </label>
+                            <select id="digivolLevel" name="digivolLevel" class="form-control" required>
+                                <option value="">Select level</option>
+                                <option value="In-Training">In-Training</option>
+                                <option value="Rookie">Rookie</option>
+                                <option value="Champion">Champion</option>
+                                <option value="Ultimate">Ultimate</option>
+                                <option value="Mega">Mega</option>
+                            </select>
+                            <div class="error-message" id="levelError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elements Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-fire"></i>
+                        Elements <span class="required">*</span>
+                    </h2>
+                    
+                    <div class="elements-grid">
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="fire" name="elements" value="Fire">
+                            <label for="fire" class="element-label fire">
+                                <i class="fas fa-fire"></i>
+                                Fire
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="water" name="elements" value="Water">
+                            <label for="water" class="element-label water">
+                                <i class="fas fa-tint"></i>
+                                Water
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="earth" name="elements" value="Earth">
+                            <label for="earth" class="element-label earth">
+                                <i class="fas fa-mountain"></i>
+                                Earth
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="air" name="elements" value="Air">
+                            <label for="air" class="element-label air">
+                                <i class="fas fa-wind"></i>
+                                Air
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="light" name="elements" value="Light">
+                            <label for="light" class="element-label light">
+                                <i class="fas fa-sun"></i>
+                                Light
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="dark" name="elements" value="Dark">
+                            <label for="dark" class="element-label dark">
+                                <i class="fas fa-moon"></i>
+                                Dark
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="electric" name="elements" value="Electric">
+                            <label for="electric" class="element-label electric">
+                                <i class="fas fa-bolt"></i>
+                                Electric
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="ice" name="elements" value="Ice">
+                            <label for="ice" class="element-label ice">
+                                <i class="fas fa-snowflake"></i>
+                                Ice
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="plant" name="elements" value="Plant">
+                            <label for="plant" class="element-label plant">
+                                <i class="fas fa-leaf"></i>
+                                Plant
+                            </label>
+                        </div>
+                        <div class="element-checkbox">
+                            <input type="checkbox" id="metal" name="elements" value="Metal">
+                            <label for="metal" class="element-label metal">
+                                <i class="fas fa-cog"></i>
+                                Metal
+                            </label>
+                        </div>
+                    </div>
+                    <div class="error-message" id="elementsError"></div>
+                </div>
+
+                <!-- Description Section -->
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="description">
+                            Description <span class="required">*</span>
+                            <span class="info-text">(minimum 100 characters)</span>
+                        </label>
+                        <textarea 
+                            id="description" 
+                            name="description" 
+                            class="form-control"
+                            placeholder="Describe your Digimon's appearance, personality, and abilities..."
+                            required
+                        ></textarea>
+                        <div class="char-counter">
+                            <span id="charCount">0</span>/100 characters
+                        </div>
+                        <div class="error-message" id="descriptionError"></div>
+                    </div>
+                </div>
+
+                <!-- Attack & Combat Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-fist-raised"></i>
+                        Combat Information
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="signatureAttack">
+                            Signature Attack Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="signatureAttack" 
+                            name="signatureAttack" 
+                            class="form-control"
+                            placeholder="Enter unique attack name"
+                            required
+                        >
+                        <div class="error-message" id="attackError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rarity">
+                            Rarity Level <span class="required">*</span>
+                        </label>
+                        <div class="rarity-options">
+                            <div class="rarity-option">
+                                <input type="radio" id="common" name="rarity" value="Common" required>
+                                <label for="common" class="rarity-label common">
+                                    <i class="fas fa-star"></i>
+                                    Common
+                                </label>
+                            </div>
+                            <div class="rarity-option">
+                                <input type="radio" id="rare" name="rarity" value="Rare" required>
+                                <label for="rare" class="rarity-label rare">
+                                    <i class="fas fa-star"></i>
+                                    Rare
+                                </label>
+                            </div>
+                            <div class="rarity-option">
+                                <input type="radio" id="legendary" name="rarity" value="Legendary" required>
+                                <label for="legendary" class="rarity-label legendary">
+                                    <i class="fas fa-crown"></i>
+                                    Legendary
+                                </label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="rarityError"></div>
+                    </div>
+                </div>
+
+                <!-- Image Upload Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-image"></i>
+                        Image Upload
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="digimonImage">
+                            Digimon Image
+                            <span class="info-text">(JPG/PNG, max 2MB)</span>
+                        </label>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <input type="file" id="digimonImage" name="digimonImage" accept="image/jpeg,image/png" hidden>
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drop your image here or <span class="upload-link">click to browse</span></p>
+                                <small>JPG or PNG, max 2MB</small>
+                            </div>
+                            <div class="file-info" id="fileInfo" style="display: none;">
+                                <i class="fas fa-file-image"></i>
+                                <span id="fileName"></span>
+                                <span id="fileSize"></span>
+                                <button type="button" id="removeFile" class="remove-file">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="error-message" id="imageError"></div>
+                    </div>
+                </div>
+
+                <!-- Optional Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-friends"></i>
+                        Additional Information
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="partnerTamer">
+                            Suggested Partner Tamer
+                            <span class="info-text">(optional)</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="partnerTamer" 
+                            name="partnerTamer" 
+                            class="form-control"
+                            placeholder="Who would be the ideal partner for this Digimon?"
+                        >
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="submit-section">
+                    <button type="submit" name="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit 
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-content">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Submission Successful!</h2>
+                    <p>Your Digimon "<span id="submittedName"></span>" has been submitted for review.</p>
+                    <p>Thank you for contributing to the Digital World!</p>
+                    <button type="button" id="submitAnother" class="submit-another-btn">
+                        Submit Another Digimon
+                    </button>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
+
+    <script src="submission.js"></script>
 
 </body>
 </html>

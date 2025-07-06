@@ -19,41 +19,61 @@
             </div>
         </div>
     </nav>
+    <section class="gallery-section">
+        <div class="gallery-Container">
+            <div class="Controls">
+                <div class="Filter-section">
+                    <div class="Filter-group">
+                         <label for="levelFilter"></label>
+                         <select id="levelFilter">
+                            <option value="">All Levels</option>
+                            <option value="In-Training">In-Training</option>
+                            <option value="Rookie">Rookie</option>
+                            <option value="Champion">Champion</option>
+                            <option value="Ultimate">Ultimate</option>
+                            <option value="Mega">Mega</option>
+                         </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="rarityFilter"></label>
+                        <select id="rarityFilter">
+                            <option value="">All Rarities</option>
+                            <option value="Common">Common</option>
+                            <option value="Rare">Rare</option>
+                            <option value="Legendary">Legendary</option>
+                         </select>
+                    </div>
 
-     <section class="hero">
-        <div class="container">
-            <div class="content-overlay">
-                <h1>Digimon Gallery</h1>
-        </div>
-    </section>
+                     <div class="filter-group">
+                        <label for="elementFilter"></label>
+                        <select id="elementFilter">
+                            <option value="">All Elements</option>
+                            <option value="Fire">Fire</option>
+                            <option value="Water">Water</option>
+                            <option value="Earth">Earth</option>
+                            <option value="Air">Air</option>
+                            <option value="Light">Light</option>
+                            <option value="Dark">Dark</option>
+                        </select>
+                    </div>
 
-    <section class="features">
-        <div class="container">
-            <h2>Why Join Us?</h2>
-            <div class="feature-cards">
-                <div class="card">
-                    <img src="../Images/feature1.png" alt="Feature 1">
-                    
+                    <div class="search-container">
+                        <label for="searchFilter"></label>
+                        <input type="text" id="searchFilter" placeholder="Search Digimon...">
+                    </div>
+
+                    <button class="random-btn" onclick="generateRandomDigimon()">
+                        Random Digimon
+                    </button>
+                   
                 </div>
-                <div class="card">
-                    <img src="../Images/feature2.png" alt="Feature 2">
-                    
-                </div>
-                <div class="card">
-                    <img src="../Images/feature3.png" alt="Feature 3">  
-                </div>
-                <div class="card">
-                    <img src="../Images/feature3.png" alt="Feature 3">  
-                </div>
-                <div class="card">
-                    <img src="../Images/feature3.png" alt="Feature 3">  
-                </div>
-                <div class="card">
-                    <img src="../Images/feature3.png" alt="Feature 3">  
-                </div>
+
             </div>
-        </div>
+         </div>
     </section>
+
+
+   
 
     
     <script src="../js/showcase.js"></script>
