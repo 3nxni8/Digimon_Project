@@ -1,1 +1,60 @@
 
+**Instructions:**
+
+- Member Registration Form
+    - Create a user-friendly form that allows fans to join the website.
+    - Required fields include
+        - Full Name
+        - Username (5–12 characters, letters and numbers only)
+        - Email Address (must follow valid format)
+        - Password (minimum 8 characters, must include letters and numbers)
+        - Confirm Password (must match password)
+        - Favorite Digimon (dropdown or autocomplete)
+        - Region (dropdown selection)
+        - Avatar Upload (JPG/PNG, max 1MB)
+        - Terms and Conditions Agreement (checkbox)
+    - Validation Requirements:
+        - All fields except avatar must be completed before submission.
+        - Username and email must be simulated as unique. For example, no duplicates in localStorage.
+        - File upload must be restricted by size and type.
+        - Real-time validation for password match.
+        - Meaningful error messages must appear for any invalid field.
+- Fan Digimon Submission Form
+    - Allow logged-in users to contribute original Digimon entries.
+    - The form should collect
+        - Digimon Name (alphanumeric, 3–20 chars)
+        - Digivolution Level (In-Training, Rookie, Champion, Ultimate, Mega)
+        - Element(s) (checkboxes: Fire, Water, Earth, Light, Dark, etc.)
+        - Description (min. 100 characters)
+        - Signature Attack Name (must be unique)
+        - Image Upload (JPG/PNG, max 2MB)
+        - Suggested Partner Tamer (optional)
+        - Rarity (radio buttons: Common, Rare, Legendary)
+    - Conditional Validation
+        - If "Legendary" is selected, a required Origin Story field (min. 150 characters) must appear.
+        - Attack name must not duplicate others (simulate uniqueness).
+        - File input must be validated.
+        - Prevent duplicate Digimon name submissions.
+- Digimon Showcase Page
+    - Display all submitted Digimon entries in an attractive card layout. Each Digimon card should feature:
+        - Name, level, rarity, and thumbnail image.
+        - A short version of the description (max 200 characters).
+        - A “View Evolution Tree” button.
+- Evolution Tree Viewer (Dynamic Feature)
+    - Clicking “View Evolution Tree” should
+        - Open a popup modal or expandable panel.
+        - Display the Digimon’s evolution lineage visually from Fresh, In-Training, Rookie, Champion, Ultimate and Mega
+    - Logic
+        - Allow predefined evolution chains.
+        - Match user-submitted Digimon into chains manually or simulate chains randomly for display.
+    - Bonus Feature
+        - Allow users to filter Digimon by element, level, or rarity on the showcase page.
+        - Include a Random Digimon Generator using JavaScript.
+- Visual and Technical Requirements
+    - Use consistent Digimon-inspired theming (fonts, icons, colors).
+    - Ensure mobile responsiveness (Flexbox/Grid recommended).
+    - Follow accessibility best practices:
+        - Semantic HTML
+        - Screen-reader-friendly
+        - Focus indicators and keyboard navigation
+    - Include animations for modal, hover, or form transitions.
