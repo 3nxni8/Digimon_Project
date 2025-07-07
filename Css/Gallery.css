@@ -1,3 +1,6 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap');
+
 /* CSS Variables */
 :root {
     --primary-blue: #1560BD;
@@ -307,5 +310,384 @@ input[type="text"]::placeholder {
     select,
     .random-btn {
         font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Gallery Grid Styles */
+.digimon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Empty state styles */
+.digimon-grid .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+}
+
+.digimon-grid .empty-state h3 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.digimon-grid .empty-state p {
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+.digimon-grid .empty-state a {
+    color: var(--accent-orange);
+    text-decoration: none;
+}
+
+.digimon-grid .empty-state a:hover {
+    text-decoration: underline;
+}
+
+/* Digimon Card Styles */
+.digimon-card {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.digimon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 149, 237, 0.1), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.digimon-card:hover::before {
+    left: 100%;
+}
+
+.digimon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Card Image Styles */
+.card-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+
+.digimon-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Card Content Styles */
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+}
+
+/* Card Header Styles */
+.card-header {
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    color: var(--primary-blue);
+    margin-bottom: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* Card Meta Styles */
+.card-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Badge Styles */
+.level-badge,
+.rarity-badge {
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.level-badge {
+    background: var(--cornflower-blue);
+}
+
+.rarity-badge {
+    background: var(--text-dark);
+}
+
+/* Rarity specific colors */
+.rarity-common {
+    background: #7f8c8d;
+}
+
+.rarity-rare {
+    background: #3498db;
+}
+
+.rarity-legendary {
+    background: #9b59b6;
+}
+
+/* Element Tags */
+.elements {
+    margin-bottom: 10px;
+}
+
+.element-tag {
+    background: #f0f9ff;
+    color: var(--primary-blue);
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    display: inline-block;
+    border: 1px solid rgba(21, 96, 189, 0.2);
+}
+
+/* Description Styles */
+.description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+/* Card Footer Styles */
+.card-footer {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: auto;
+}
+
+.attack-info {
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.attack-info strong {
+    color: var(--accent-orange);
+    font-weight: 600;
+}
+
+.creator-info {
+    font-size: 12px;
+    color: #999;
+    font-style: italic;
+}
+
+/* Modal Dialog Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--light-gray);
+    padding-bottom: 15px;
+}
+
+.modal-header h2 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+}
+
+.modal-header .badge-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-header .badge-container span {
+    padding: 5px 12px;
+    border-radius: 15px;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.modal-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.modal-details > div {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: var(--light-gray);
+    border-radius: 8px;
+    border-left: 4px solid var(--cornflower-blue);
+}
+
+.modal-details strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.modal-details .creator-info {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    color: #666;
+    background: none;
+    border-left: none;
+    font-style: italic;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-dark);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    background: var(--light-gray);
+    color: var(--accent-orange);
+}
+
+/* Responsive Card Styles */
+@media (max-width: 768px) {
+    .digimon-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+        padding: 15px 0;
+    }
+    
+    .card-content {
+        padding: 15px;
+    }
+    
+    .card-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-content {
+        padding: 20px;
+        margin: 20px;
+        max-height: 85%;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .digimon-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .card-image {
+        height: 180px;
+    }
+    
+    .card-meta {
+        gap: 5px;
+    }
+    
+    .level-badge,
+    .rarity-badge {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+    
+    .modal-content {
+        margin: 10px;
+        padding: 15px;
     }
 }

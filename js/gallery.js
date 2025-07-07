@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize storage
+    const digimonStorage = new DigimonStorage();
+    
     let allDigimon = [];
     let filteredDigimon = [];
     
@@ -42,18 +45,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 signatureAttack: 'Pepper Breath',
                 rarity: 'Common',
                 partnerTamer: 'Tai Kamiya',
-                image: './images/agumon2.jpeg', // Fixed path
+                image: '../images/agumon2.jpeg',
                 creator: { username: 'admin', fullName: 'Admin User' }
             },
             {
-                name: 'Gabumon',
-                level: 'Rookie', 
-                elements: ['Ice'],
-                description: 'A Reptile Digimon whose name and design are derived from the gaburu gaburuto onomatopoeia for biting.',
-                signatureAttack: 'Blue Blaster',
+                name: 'Koromon',
+                level: 'In-Training', 
+                elements: ['Normal'],
+                description: 'A Lesser Digimon whose body is mostly just a head. It is able to move by hopping, and although it is cute, it has a fierce side.',
+                signatureAttack: 'Bubble Blow',
                 rarity: 'Common',
+                partnerTamer: 'Tai Kamiya',
+                image: '../images/Koromon_t.jpg',
+                creator: { username: 'admin', fullName: 'Admin User' }
+            },
+            {
+                name: 'Garurumon',
+                level: 'Champion',
+                elements: ['Ice', 'Beast'],
+                description: 'A Beast Digimon whose whole body is covered in blue, white, and silver-colored fur.',
+                signatureAttack: 'Howling Blaster',
+                rarity: 'Rare',
                 partnerTamer: 'Matt Ishida',
-                image: './images/gabumon.jpg', // Fixed path and filename
+                image: '../images/Garurumon_b.webp',
                 creator: { username: 'admin', fullName: 'Admin User' }
             }
         ];
@@ -94,16 +108,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create gallery grid
         const galleryGrid = document.createElement('div');
         galleryGrid.className = 'digimon-grid';
-        galleryGrid.style.cssText = `
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
-        `;
         
         if (filteredDigimon.length === 0) {
             galleryGrid.innerHTML = `
-                <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                <div class="empty-state">
                     <h3>No Digimon found</h3>
                     <p>Try adjusting your filters or <a href="submit.html">submit a new Digimon</a>!</p>
                 </div>
@@ -121,75 +129,46 @@ document.addEventListener('DOMContentLoaded', function() {
     function createDigimonCard(digimon) {
         const card = document.createElement('div');
         card.className = 'digimon-card';
-        card.style.cssText = `
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        `;
         
         card.innerHTML = `
-            <div class="card-image" style="height: 200px; overflow: hidden;">
-                <img src="${digimon.image || './images/Koromon_t.jpg'}" 
-                     alt="${digimon.name}" 
-                     style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="card-image">
+                <img src="${digimon.image || '../images/Koromon_t.jpg'}" 
+                     alt="${digimon.name}">
             </div>
-            <div class="card-content" style="padding: 20px;">
-                <div class="card-header" style="margin-bottom: 15px;">
-                    <h3 style="color: #1560BD; margin-bottom: 5px;">${digimon.name}</h3>
-                    <div class="card-meta" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <span class="level-badge" style="background: #6495ED; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">${digimon.level}</span>
-                        <span class="rarity-badge" style="background: ${getRarityColor(digimon.rarity)}; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">${digimon.rarity}</span>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>${digimon.name}</h3>
+                    <div class="card-meta">
+                        <span class="level-badge">${digimon.level}</span>
+                        <span class="rarity-badge rarity-${digimon.rarity.toLowerCase()}">${digimon.rarity}</span>
                     </div>
                 </div>
                 
-                <div class="elements" style="margin-bottom: 10px;">
+                <div class="elements">
                     ${digimon.elements.map(element => 
-                        `<span class="element-tag" style="background: #f0f9ff; color: #1560BD; padding: 2px 6px; border-radius: 8px; font-size: 11px; margin-right: 5px;">${element}</span>`
+                        `<span class="element-tag">${element}</span>`
                     ).join('')}
                 </div>
                 
-                <p class="description" style="color: #666; font-size: 14px; line-height: 1.4; margin-bottom: 15px;">
+                <p class="description">
                     ${digimon.description.length > 100 ? digimon.description.substring(0, 100) + '...' : digimon.description}
                 </p>
                 
-                <div class="card-footer" style="border-top: 1px solid #eee; padding-top: 10px;">
-                    <div class="attack-info" style="margin-bottom: 8px;">
-                        <strong style="color: #FF6B35;">Signature Attack:</strong> ${digimon.signatureAttack}
+                <div class="card-footer">
+                    <div class="attack-info">
+                        <strong>Signature Attack:</strong> ${digimon.signatureAttack}
                     </div>
-                    <div class="creator-info" style="font-size: 12px; color: #999;">
+                    <div class="creator-info">
                         Created by: ${digimon.creator.fullName} (@${digimon.creator.username})
                     </div>
                 </div>
             </div>
         `;
         
-        // Add hover effects
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-5px)';
-            card.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
-        });
-        
         // Add click event for detailed view
         card.addEventListener('click', () => showDigimonDetails(digimon));
         
         return card;
-    }
-    
-    function getRarityColor(rarity) {
-        switch(rarity.toLowerCase()) {
-            case 'common': return '#7f8c8d';
-            case 'rare': return '#3498db';
-            case 'legendary': return '#9b59b6';
-            default: return '#95a5a6';
-        }
     }
     
     function showRandomDigimon() {
@@ -202,53 +181,41 @@ document.addEventListener('DOMContentLoaded', function() {
     function showDigimonDetails(digimon) {
         // Create modal for detailed view
         const modal = document.createElement('div');
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        `;
+        modal.className = 'modal';
         
         modal.innerHTML = `
-            <div class="modal-content" style="background: white; border-radius: 20px; padding: 30px; max-width: 600px; width: 90%; max-height: 80%; overflow-y: auto; position: relative;">
-                <div class="modal-header" style="text-align: center; margin-bottom: 20px;">
-                    <h2 style="color: #1560BD; margin-bottom: 10px;">${digimon.name}</h2>
-                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                        <span style="background: #6495ED; color: white; padding: 5px 12px; border-radius: 15px;">${digimon.level}</span>
-                        <span style="background: ${getRarityColor(digimon.rarity)}; color: white; padding: 5px 12px; border-radius: 15px;">${digimon.rarity}</span>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>${digimon.name}</h2>
+                    <div class="badge-container">
+                        <span class="level-badge">${digimon.level}</span>
+                        <span class="rarity-badge rarity-${digimon.rarity.toLowerCase()}">${digimon.rarity}</span>
                     </div>
                 </div>
                 
-                <div class="modal-image" style="text-align: center; margin-bottom: 20px;">
-                    <img src="${digimon.image || './images/Koromon_t.jpg'}" alt="${digimon.name}" 
-                         style="max-width: 100%; height: auto; border-radius: 10px;">
+                <div class="modal-image">
+                    <img src="${digimon.image || '../images/Koromon_t.jpg'}" alt="${digimon.name}">
                 </div>
                 
                 <div class="modal-details">
-                    <div style="margin-bottom: 15px;">
+                    <div>
                         <strong>Elements:</strong> ${digimon.elements.join(', ')}
                     </div>
-                    <div style="margin-bottom: 15px;">
+                    <div>
                         <strong>Signature Attack:</strong> ${digimon.signatureAttack}
                     </div>
-                    <div style="margin-bottom: 15px;">
+                    <div>
                         <strong>Description:</strong><br>
                         ${digimon.description}
                     </div>
-                    ${digimon.partnerTamer ? `<div style="margin-bottom: 15px;"><strong>Partner Tamer:</strong> ${digimon.partnerTamer}</div>` : ''}
-                    ${digimon.originStory ? `<div style="margin-bottom: 15px;"><strong>Origin Story:</strong><br>${digimon.originStory}</div>` : ''}
-                    <div style="border-top: 1px solid #eee; padding-top: 15px; color: #666;">
+                    ${digimon.partnerTamer ? `<div><strong>Partner Tamer:</strong> ${digimon.partnerTamer}</div>` : ''}
+                    ${digimon.originStory ? `<div><strong>Origin Story:</strong><br>${digimon.originStory}</div>` : ''}
+                    <div class="creator-info">
                         Created by: ${digimon.creator.fullName} (@${digimon.creator.username})
                     </div>
                 </div>
                 
-                <button class="close-modal" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer;">×</button>
+                <button class="close-modal">×</button>
             </div>
         `;
         
