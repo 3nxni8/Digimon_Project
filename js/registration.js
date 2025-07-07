@@ -298,28 +298,6 @@ form.addEventListener('submit', function(e) {
         // Set as current logged-in user
         digimonStorage.setCurrentUser(userData.username);
         
-        // Create submission entry for the registration
-        const submissionData = {
-            id: Date.now(), // Simple ID generation
-            type: 'registration',
-            title: `New Member: ${userData.fullName}`,
-            content: `Welcome ${userData.fullName} (${userData.username}) to the Digimon community! Favorite Digimon: ${userData.favoriteDigimon}, Region: ${userData.region}`,
-            author: userData.username,
-            timestamp: new Date().toISOString(),
-            status: 'approved', // Auto-approve registrations
-            userData: userData // Store full user data for reference
-        };
-        
-        // Save as submission (you'll need to add this method to storage.js)
-        if (typeof digimonStorage.saveSubmission === 'function') {
-            digimonStorage.saveSubmission(submissionData);
-        } else {
-            // Fallback: save to localStorage directly
-            const submissions = JSON.parse(localStorage.getItem('digimon_submissions') || '[]');
-            submissions.unshift(submissionData); // Add to beginning of array
-            localStorage.setItem('digimon_submissions', JSON.stringify(submissions));
-        }
-        
         // Success message
         alert('🎉 Welcome to the Digital World! Your registration was successful.');
         

@@ -74,19 +74,8 @@ class DigimonStorage {
         return newDigimon;
     }
 
-    saveSubmission(submissionData) {
-        const submissions = this.getSubmissions();
-        submissions.unshift(submissionData); // Add to beginning
-        localStorage.setItem('digimon_submissions', JSON.stringify(submissions));
-        return submissionData;
-    }
-
     getSubmittedDigimon() {
         return JSON.parse(localStorage.getItem('submittedDigimon')) || [];
-    }
-
-    getSubmissions() {
-        return JSON.parse(localStorage.getItem('digimon_submissions') || '[]');
     }
 
     getApprovedDigimon() {
