@@ -3,9 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize storage
     const digimonStorage = new DigimonStorage();
     
-    // Check if user is logged in
-    checkUserAuthentication();
-    
     // Form elements
     const form = document.getElementById('digimonForm');
     const nameInput = document.getElementById('digimonName');
@@ -25,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeLogin = document.getElementById('closeLogin');
     const goToRegister = document.getElementById('goToRegister');
     const currentUserDisplay = document.getElementById('currentUserDisplay');
+    console.log('currentUserDisplay found at init:', currentUserDisplay);
     
     // File upload elements
     const fileUploadArea = document.getElementById('fileUploadArea');
@@ -59,13 +57,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize event listeners
     initializeEventListeners();
     
+    // Check if user is logged in after all elements are initialized
+    checkUserAuthentication();
+    
     // Authentication functions
     function checkUserAuthentication() {
         const currentUser = digimonStorage.getCurrentUser();
         if (currentUser) {
             const user = digimonStorage.getUserByUsername(currentUser);
             if (user) {
-                currentUserDisplay.textContent = `Logged in as: ${user.fullName} (@${currentUser})`;
+                if (currentUserDisplay) {
+                    currentUserDisplay.textContent = `Logged in as: ${user.fullName} (@${currentUser})`;
+                }
                 return true;
             }
         }
@@ -76,8 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function showLoginModal() {
-        loginModal.style.display = 'block';
-        form.style.display = 'none';
+        if (loginModal) {
+            loginModal.style.display = 'block';
+            if (form) {
+                form.style.display = 'none';
+            }
+        }
     }
     
     function hideLoginModal() {
