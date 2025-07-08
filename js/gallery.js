@@ -13,6 +13,160 @@ document.addEventListener('DOMContentLoaded', function() {
     const randomBtn = document.querySelector('.random-btn');
     const galleryContainer = document.querySelector('.gallery-container');
     
+    // Evolution Chain Data
+    const evolutionChains = {
+        // Agumon evolution line
+        'agumon': {
+            fresh: { name: 'Botamon', image: '../images/botamon.png', level: 'Fresh' },
+            inTraining: { name: 'Koromon', image: '../images/Koromon_t.jpg', level: 'In-Training' },
+            rookie: { name: 'Agumon', image: '../images/agumon2.jpeg', level: 'Rookie' },
+            champion: { name: 'Greymon', image: '../images/greymon.png', level: 'Champion' },
+            ultimate: { name: 'MetalGreymon', image: '../images/metalgreymon.png', level: 'Ultimate' },
+            mega: { name: 'WarGreymon', image: '../images/wargreymon.png', level: 'Mega' }
+        },
+        // Koromon evolution line (same as Agumon since Koromon evolves to Agumon)
+        'koromon': {
+            fresh: { name: 'Botamon', image: '../images/botamon.png', level: 'Fresh' },
+            inTraining: { name: 'Koromon', image: '../images/Koromon_t.jpg', level: 'In-Training' },
+            rookie: { name: 'Agumon', image: '../images/agumon2.jpeg', level: 'Rookie' },
+            champion: { name: 'Greymon', image: '../images/greymon.png', level: 'Champion' },
+            ultimate: { name: 'MetalGreymon', image: '../images/metalgreymon.png', level: 'Ultimate' },
+            mega: { name: 'WarGreymon', image: '../images/wargreymon.png', level: 'Mega' }
+        },
+        // Garurumon evolution line
+        'garurumon': {
+            fresh: { name: 'Punimon', image: '../images/punimon.png', level: 'Fresh' },
+            inTraining: { name: 'Tsunomon', image: '../images/tsunomon.png', level: 'In-Training' },
+            rookie: { name: 'Gabumon', image: '../images/gabumon.png', level: 'Rookie' },
+            champion: { name: 'Garurumon', image: '../images/Garurumon_b.webp', level: 'Champion' },
+            ultimate: { name: 'WereGarurumon', image: '../images/weregarurumon.png', level: 'Ultimate' },
+            mega: { name: 'MetalGarurumon', image: '../images/metalgarurumon.png', level: 'Mega' }
+        }
+    };
+
+    // Function to get evolution chain for a Digimon
+    function getEvolutionChain(digimonName, digimonLevel) {
+        const name = digimonName.toLowerCase();
+        
+        // Check if we have a predefined chain
+        if (evolutionChains[name]) {
+            return evolutionChains[name];
+        }
+        
+        // Generate a random/simulated chain based on level
+        return generateRandomEvolutionChain(digimonName, digimonLevel);
+    }
+
+    // Function to generate random evolution chain for user-submitted Digimon
+    function generateRandomEvolutionChain(digimonName, digimonLevel) {
+        const levels = ['Fresh', 'In-Training', 'Rookie', 'Champion', 'Ultimate', 'Mega'];
+        const currentLevelIndex = levels.indexOf(digimonLevel);
+        
+        const chain = {
+            fresh: { name: 'Unknown Fresh', image: '../images/Koromon_t.jpg', level: 'Fresh' },
+            inTraining: { name: 'Unknown In-Training', image: '../images/Koromon_t.jpg', level: 'In-Training' },
+            rookie: { name: 'Unknown Rookie', image: '../images/Koromon_t.jpg', level: 'Rookie' },
+            champion: { name: 'Unknown Champion', image: '../images/Koromon_t.jpg', level: 'Champion' },
+            ultimate: { name: 'Unknown Ultimate', image: '../images/Koromon_t.jpg', level: 'Ultimate' },
+            mega: { name: 'Unknown Mega', image: '../images/Koromon_t.jpg', level: 'Mega' }
+        };
+        
+        // Set the current Digimon at its level
+        const levelKey = digimonLevel.toLowerCase().replace('-', '');
+        if (chain[levelKey]) {
+            chain[levelKey] = { name: digimonName, image: '../images/Koromon_t.jpg', level: digimonLevel };
+        }
+        
+        return chain;
+    }
+
+    // Function to show evolution tree modal
+    function showEvolutionTree(digimonId, digimonName, digimonLevel) {
+        const evolutionChain = getEvolutionChain(digimonName, digimonLevel);
+        
+        // Create modal for evolution tree
+        const modal = document.createElement('div');
+        modal.className = 'modal evolution-modal';
+        
+        modal.innerHTML = `
+            <div class="modal-content evolution-modal-content">
+                <div class="modal-header">
+                    <h2>${digimonName} Evolution Tree</h2>
+                    <p class="evolution-subtitle">Complete Evolution Lineage</p>
+                </div>
+                
+                <div class="evolution-tree">
+                    <div class="evolution-stage">
+                        <div class="evolution-card">
+                            <img src="${evolutionChain.fresh.image}" alt="${evolutionChain.fresh.name}">
+                            <h4>${evolutionChain.fresh.name}</h4>
+                            <span class="evolution-level">${evolutionChain.fresh.level}</span>
+                        </div>
+                        <div class="evolution-arrow">▼</div>
+                    </div>
+                    
+                    <div class="evolution-stage">
+                        <div class="evolution-card">
+                            <img src="${evolutionChain.inTraining.image}" alt="${evolutionChain.inTraining.name}">
+                            <h4>${evolutionChain.inTraining.name}</h4>
+                            <span class="evolution-level">${evolutionChain.inTraining.level}</span>
+                        </div>
+                        <div class="evolution-arrow">▼</div>
+                    </div>
+                    
+                    <div class="evolution-stage">
+                        <div class="evolution-card">
+                            <img src="${evolutionChain.rookie.image}" alt="${evolutionChain.rookie.name}">
+                            <h4>${evolutionChain.rookie.name}</h4>
+                            <span class="evolution-level">${evolutionChain.rookie.level}</span>
+                        </div>
+                        <div class="evolution-arrow">▼</div>
+                    </div>
+                    
+                    <div class="evolution-stage">
+                        <div class="evolution-card">
+                            <img src="${evolutionChain.champion.image}" alt="${evolutionChain.champion.name}">
+                            <h4>${evolutionChain.champion.name}</h4>
+                            <span class="evolution-level">${evolutionChain.champion.level}</span>
+                        </div>
+                        <div class="evolution-arrow">▼</div>
+                    </div>
+                    
+                    <div class="evolution-stage">
+                        <div class="evolution-card">
+                            <img src="${evolutionChain.ultimate.image}" alt="${evolutionChain.ultimate.name}">
+                            <h4>${evolutionChain.ultimate.name}</h4>
+                            <span class="evolution-level">${evolutionChain.ultimate.level}</span>
+                        </div>
+                        <div class="evolution-arrow">▼</div>
+                    </div>
+                    
+                    <div class="evolution-stage">
+                        <div class="evolution-card">
+                            <img src="${evolutionChain.mega.image}" alt="${evolutionChain.mega.name}">
+                            <h4>${evolutionChain.mega.name}</h4>
+                            <span class="evolution-level">${evolutionChain.mega.level}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="close-modal">×</button>
+            </div>
+        `;
+        
+        // Add close functionality
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.classList.contains('close-modal')) {
+                modal.remove();
+            }
+        });
+        
+        document.body.appendChild(modal);
+    }
+
+    // Make showEvolutionTree globally available
+    window.showEvolutionTree = showEvolutionTree;
+
     // Initialize gallery
     initializeGallery();
     
@@ -38,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function addDefaultDigimon() {
         const defaultDigimon = [
             {
+                id: 'agumon',
                 name: 'Agumon',
                 level: 'Rookie',
                 elements: ['Fire'],
@@ -49,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 creator: { username: 'admin', fullName: 'Admin User' }
             },
             {
+                id: 'koromon',
                 name: 'Koromon',
                 level: 'In-Training', 
                 elements: ['Light'],  // Changed from 'Normal' to 'Light'
@@ -60,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 creator: { username: 'admin', fullName: 'Admin User' }
             },
             {
+                id: 'garurumon',
                 name: 'Garurumon',
                 level: 'Champion',
                 elements: ['Ice'],  // Changed from ['Ice', 'Beast'] to just ['Ice']
@@ -153,12 +310,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 
                 <p class="description">
-                    ${digimon.description.length > 100 ? digimon.description.substring(0, 100) + '...' : digimon.description}
+                    ${digimon.description.length > 200 ? digimon.description.substring(0, 200) + '...' : digimon.description}
                 </p>
                 
                 <div class="card-footer">
                     <div class="attack-info">
                         <strong>Signature Attack:</strong> ${digimon.signatureAttack}
+                    </div>
+                    <div class="card-actions">
+                        <button class="evolution-tree-btn" onclick="event.stopPropagation(); showEvolutionTree('${digimon.id}', '${digimon.name}', '${digimon.level}')">
+                            View Evolution Tree
+                        </button>
                     </div>
                     <div class="creator-info">
                         Created by: ${digimon.creator.fullName} (@${digimon.creator.username})
