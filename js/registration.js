@@ -1,3 +1,6 @@
+// Initialize DigimonStorage
+const digimonStorage = new DigimonStorage();
+
 // Simulated database for uniqueness checks
 const existingUsers = {
     usernames: ['admin', 'test123', 'agumon01', 'digimaster'],
