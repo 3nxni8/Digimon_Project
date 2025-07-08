@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 name: 'Koromon',
                 level: 'In-Training', 
-                elements: ['Normal'],
+                elements: ['Light'],  // Changed from 'Normal' to 'Light'
                 description: 'A Lesser Digimon whose body is mostly just a head. It is able to move by hopping, and although it is cute, it has a fierce side.',
                 signatureAttack: 'Bubble Blow',
                 rarity: 'Common',
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 name: 'Garurumon',
                 level: 'Champion',
-                elements: ['Ice', 'Beast'],
+                elements: ['Ice'],  // Changed from ['Ice', 'Beast'] to just ['Ice']
                 description: 'A Beast Digimon whose whole body is covered in blue, white, and silver-colored fur.',
                 signatureAttack: 'Howling Blaster',
                 rarity: 'Rare',

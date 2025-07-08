@@ -115,6 +115,7 @@ html {
     overflow: hidden;
 }
 
+
 /* Gallery Section */
 .filter-section {
     max-width: 1100px;
@@ -316,9 +317,12 @@ input[type="text"]::placeholder {
 /* Gallery Grid Styles */
 .digimon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* Empty state styles */
@@ -349,12 +353,14 @@ input[type="text"]::placeholder {
 
 /* Digimon Card Styles */
 .digimon-card {
-    background: var(--white);
+    width: 100%;
+    max-width: 350px;
+    background: white;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -690,4 +696,10 @@ input[type="text"]::placeholder {
         margin: 10px;
         padding: 15px;
     }
+}
+
+.gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }

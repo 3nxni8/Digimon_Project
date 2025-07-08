@@ -317,20 +317,29 @@
     <div id="loginModal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Login Required</h2>
+                <h2>Welcome Back!</h2>
                 <span class="close-modal" id="closeLogin">&times;</span>
             </div>
             <div class="modal-body">
-                <p>Please log in to submit a Digimon:</p>
+                <div class="login-intro">
+                    <i class="fas fa-user-circle"></i>
+                    <p>Please log in to submit your Digimon creation</p>
+                </div>
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="loginUsername">Username:</label>
-                        <input type="text" id="loginUsername" required>
+                        <input type="text" id="loginUsername" class="form-control" placeholder="Enter your username" required>
                         <div class="error-message" id="loginError"></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="submit-btn">Login</button>
-                        <button type="button" id="goToRegister" class="secondary-btn">Register Instead</button>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
+                        </button>
+                        <button type="button" id="goToRegister" class="secondary-btn">
+                            <i class="fas fa-user-plus"></i>
+                            New User? Register
+                        </button>
                     </div>
                 </form>
             </div>
