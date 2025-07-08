@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const elementFilter = document.getElementById('elementFilter');
     const searchFilter = document.getElementById('searchFilter');
     const randomBtn = document.querySelector('.random-btn');
-    const galleryContainer = document.querySelector('.gallery-Container');
+    const galleryContainer = document.querySelector('.gallery-container');
     
     // Initialize gallery
     initializeGallery();
@@ -97,13 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         filteredDigimon = digimonStorage.searchDigimon(searchQuery, filters);
         displayDigimon();
     }
-    
-    function displayDigimon() {
-        // Remove existing gallery grid if it exists
-        const existingGrid = document.querySelector('.digimon-grid');
-        if (existingGrid) {
-            existingGrid.remove();
-        }
+
         
         // Create gallery grid
         const galleryGrid = document.createElement('div');
