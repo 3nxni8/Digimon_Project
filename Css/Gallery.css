@@ -667,7 +667,7 @@ input[type="text"]::placeholder {
 }
 
 .evolution-tree-btn:hover {
-    background: linear-gradient(45deg, var(--primary-blue), var(--accent-orange));
+    background: var(--primary-blue);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
@@ -726,11 +726,16 @@ input[type="text"]::placeholder {
 }
 
 .evolution-card img {
-    width: 80px;
-    height: 80px;
+    width: 110px;         /* Increased from 80px */
+    height: 80px;         /* Keep height or adjust as needed */
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* Optional: Add a subtle border for emphasis */
+    /* border: 1px solid #eee; */
 }
 
 .evolution-card h4 {

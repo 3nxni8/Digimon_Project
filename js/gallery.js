@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Agumon evolution line
         'agumon': {
             fresh: { name: 'Botamon', image: '../images/botamon.png', level: 'Fresh' },
-            inTraining: { name: 'Koromon', image: '../images/Koromon_t.jpg', level: 'In-Training' },
-            rookie: { name: 'Agumon', image: '../images/agumon2.jpeg', level: 'Rookie' },
+            inTraining: { name: 'Koromon', image: '../images/Koromon.png', level: 'In-Training' },
+            rookie: { name: 'Agumon', image: '../images/Agumon.png', level: 'Rookie' },
             champion: { name: 'Greymon', image: '../images/greymon.png', level: 'Champion' },
             ultimate: { name: 'MetalGreymon', image: '../images/metalgreymon.png', level: 'Ultimate' },
             mega: { name: 'WarGreymon', image: '../images/wargreymon.png', level: 'Mega' }
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Koromon evolution line (same as Agumon since Koromon evolves to Agumon)
         'koromon': {
             fresh: { name: 'Botamon', image: '../images/botamon.png', level: 'Fresh' },
-            inTraining: { name: 'Koromon', image: '../images/Koromon_t.jpg', level: 'In-Training' },
+            inTraining: { name: 'Koromon', image: '../images/koromon.png', level: 'In-Training' },
             rookie: { name: 'Agumon', image: '../images/agumon2.jpeg', level: 'Rookie' },
             champion: { name: 'Greymon', image: '../images/greymon.png', level: 'Champion' },
             ultimate: { name: 'MetalGreymon', image: '../images/metalgreymon.png', level: 'Ultimate' },
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         card.innerHTML = `
             <div class="card-image">
-                <img src="${digimon.image || '../images/Koromon_t.jpg'}" 
+                <img src="${digimon.image && digimon.image.trim() !== '' ? digimon.image : '../images/Koromon_t.jpg'}" 
                      alt="${digimon.name}">
             </div>
             <div class="card-content">
@@ -342,57 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showDigimonDetails(randomDigimon);
     }
     
-    function showDigimonDetails(digimon) {
-        // Create modal for detailed view
-        const modal = document.createElement('div');
-        modal.className = 'modal';
-        
-        modal.innerHTML = `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>${digimon.name}</h2>
-                    <div class="badge-container">
-                        <span class="level-badge">${digimon.level}</span>
-                        <span class="rarity-badge rarity-${digimon.rarity.toLowerCase()}">${digimon.rarity}</span>
-                    </div>
-                </div>
-                
-                <div class="modal-image">
-                    <img src="${digimon.image || '../images/Koromon_t.jpg'}" alt="${digimon.name}">
-                </div>
-                
-                <div class="modal-details">
-                    <div>
-                        <strong>Elements:</strong> ${digimon.elements.join(', ')}
-                    </div>
-                    <div>
-                        <strong>Signature Attack:</strong> ${digimon.signatureAttack}
-                    </div>
-                    <div>
-                        <strong>Description:</strong><br>
-                        ${digimon.description}
-                    </div>
-                    ${digimon.partnerTamer ? `<div><strong>Partner Tamer:</strong> ${digimon.partnerTamer}</div>` : ''}
-                    ${digimon.originStory ? `<div><strong>Origin Story:</strong><br>${digimon.originStory}</div>` : ''}
-                    <div class="creator-info">
-                        Created by: ${digimon.creator.fullName} (@${digimon.creator.username})
-                    </div>
-                </div>
-                
-                <button class="close-modal">×</button>
-            </div>
-        `;
-        
-        // Add close functionality
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal || e.target.classList.contains('close-modal')) {
-                modal.remove();
-            }
-        });
-        
-        document.body.appendChild(modal);
-    }
-    
+   
     // Make generateRandomDigimon globally available for the button onclick
     window.generateRandomDigimon = showRandomDigimon;
 });
