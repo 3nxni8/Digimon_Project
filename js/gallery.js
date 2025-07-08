@@ -97,6 +97,14 @@ document.addEventListener('DOMContentLoaded', function() {
         filteredDigimon = digimonStorage.searchDigimon(searchQuery, filters);
         displayDigimon();
     }
+    
+    function displayDigimon() {
+    // Remove existing gallery grid if it exists
+    const existingGrid = document.querySelector('.digimon-grid');
+    if (existingGrid) {
+        existingGrid.remove();
+    }
+    
 
         
         // Create gallery grid
