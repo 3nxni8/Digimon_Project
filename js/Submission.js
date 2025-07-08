@@ -1,5 +1,11 @@
 // Digimon Submission Form JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize storage
+    const digimonStorage = new DigimonStorage();
+    
+    // Check if user is logged in
+    checkUserAuthentication();
+    
     // Form elements
     const form = document.getElementById('digimonForm');
     const nameInput = document.getElementById('digimonName');
@@ -11,6 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const imageInput = document.getElementById('digimonImage');
     const partnerInput = document.getElementById('partnerTamer');
     const submitBtn = document.querySelector('.submit-btn');
+    
+    // Login modal elements
+    const loginModal = document.getElementById('loginModal');
+    const loginForm = document.getElementById('loginForm');
+    const loginUsername = document.getElementById('loginUsername');
+    const closeLogin = document.getElementById('closeLogin');
+    const goToRegister = document.getElementById('goToRegister');
+    const currentUserDisplay = document.getElementById('currentUserDisplay');
     
     // File upload elements
     const fileUploadArea = document.getElementById('fileUploadArea');
@@ -28,18 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const charCount = document.getElementById('charCount');
     const charCounter = document.querySelector('.char-counter');
     
-    // Mock existing attacks for uniqueness validation
-    const existingAttacks = [
+    // Get existing Digimon names and attacks for validation
+    const existingDigimon = digimonStorage.getApprovedDigimon();
+    const existingDigimonNames = existingDigimon.map(d => d.name);
+    const existingAttacks = existingDigimon.map(d => d.signatureAttack);
+    
+    // Add default attacks for uniqueness validation
+    existingAttacks.push(...[
         'Pepper Breath', 'Blue Blaster', 'Nova Blast', 'Spiral Twister',
         'Mega Flame', 'Horn Attack', 'Lightning Paw', 'Howling Blaster'
-    ];
-    
-    // Mock existing Digimon names for uniqueness validation
-    const existingDigimonNames = [
-        'Agumon', 'Gabumon', 'Patamon', 'Tentomon', 'Biyomon', 'Gomamon',
-        'Palmon', 'Veemon', 'Hawkmon', 'Armadillomon', 'Wormmon', 'Guilmon',
-        'Renamon', 'Terriermon', 'Lopmon', 'Impmon', 'Shoutmon', 'Dorumon'
-    ];
+    ]);
     
     // Validation patterns
     const namePattern = /^[a-zA-Z0-9\s]{3,20}$/;
@@ -47,9 +59,62 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize event listeners
     initializeEventListeners();
     
+    // Authentication functions
+    function checkUserAuthentication() {
+        const currentUser = digimonStorage.getCurrentUser();
+        if (currentUser) {
+            const user = digimonStorage.getUserByUsername(currentUser);
+            if (user) {
+                currentUserDisplay.textContent = `Logged in as: ${user.fullName} (@${currentUser})`;
+                return true;
+            }
+        }
+        
+        // Show login modal if not authenticated
+        showLoginModal();
+        return false;
+    }
+    
+    function showLoginModal() {
+        loginModal.style.display = 'block';
+        form.style.display = 'none';
+    }
+    
+    function hideLoginModal() {
+        loginModal.style.display = 'none';
+        form.style.display = 'block';
+    }
+    
+    function handleLogin(username) {
+        const user = digimonStorage.getUserByUsername(username);
+        if (user) {
+            digimonStorage.setCurrentUser(username);
+            currentUserDisplay.textContent = `Logged in as: ${user.fullName} (@${username})`;
+            hideLoginModal();
+            return true;
+        }
+        return false;
+    }
+    
     function initializeEventListeners() {
         // Form submission
         form.addEventListener('submit', handleFormSubmit);
+        
+        // Login modal handlers
+        loginForm.addEventListener('submit', handleLoginSubmit);
+        closeLogin.addEventListener('click', () => {
+            window.location.href = 'Gallery.html';
+        });
+        goToRegister.addEventListener('click', () => {
+            window.location.href = 'registration.html';
+        });
+        
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                window.location.href = 'Gallery.html';
+            }
+        });
         
         // Real-time validation
         nameInput.addEventListener('input', validateName);
@@ -78,13 +143,72 @@ document.addEventListener('DOMContentLoaded', function() {
         descriptionTextarea.addEventListener('input', updateCharCount);
     }
     
+    // Login form submission handler
+    function handleLoginSubmit(e) {
+        e.preventDefault();
+        const username = loginUsername.value.trim();
+        const loginError = document.getElementById('loginError');
+        
+        if (!username) {
+            showError(loginError, 'Please enter your username');
+            return;
+        }
+        
+        if (handleLogin(username)) {
+            hideError(loginError);
+            loginForm.reset();
+        } else {
+            showError(loginError, 'Username not found. Please register first.');
+        }
+    }
+    
     // Form submission handler
     async function handleFormSubmit(e) {
         e.preventDefault();
         
+        // Check authentication first
+        if (!digimonStorage.isUserLoggedIn()) {
+            showLoginModal();
+            return;
+        }
+        
         const isValid = await validateForm();
         if (isValid) {
-            showSuccessMessage();
+            await saveDigimonSubmission();
+        }
+    }
+    
+    // Save Digimon submission
+    async function saveDigimonSubmission() {
+        try {
+            const currentUser = digimonStorage.getCurrentUser();
+            const selectedElements = Array.from(document.querySelectorAll('input[name="elements"]:checked'))
+                .map(checkbox => checkbox.value);
+            const selectedRarity = document.querySelector('input[name="rarity"]:checked').value;
+            
+            // Prepare Digimon data
+            const digimonData = {
+                name: nameInput.value.trim(),
+                level: levelSelect.value,
+                elements: selectedElements,
+                description: descriptionTextarea.value.trim(),
+                signatureAttack: attackInput.value.trim(),
+                rarity: selectedRarity,
+                partnerTamer: partnerInput.value.trim() || '',
+                image: null // For now, we'll keep it null since file handling is complex
+            };
+            
+            // Save to storage
+            const savedDigimon = digimonStorage.saveDigimon(digimonData, currentUser);
+            
+            if (savedDigimon) {
+                showSuccessMessage();
+            } else {
+                alert('Error saving Digimon. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error submitting Digimon:', error);
+            alert('Error submitting Digimon. Please try again.');
         }
     }
     
@@ -262,9 +386,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function validateImage() {
         const errorElement = document.getElementById('imageError');
         
+        // Image is optional, so return true if no file selected
         if (!imageInput.files || imageInput.files.length === 0) {
-            showError(errorElement, 'Please upload a Digimon image');
-            return false;
+            hideError(errorElement);
+            return true;
         }
         
         const file = imageInput.files[0];
