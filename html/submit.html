@@ -28,9 +28,9 @@
             </h1>
             <p>Create your own unique Digimon and share it with the community!</p>
 
-            <div class="user-info">
+            <div class="user-info" id="userInfo">
                 <i class="fas fa-user"></i>
-                Logged in as: Abdullahi nur
+                <span id="currentUserDisplay">Please log in to submit</span>
             </div>
             
         </div>
@@ -309,6 +309,30 @@
                         Submit Another Digimon
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal for returning users -->
+    <div id="loginModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login Required</h2>
+                <span class="close-modal" id="closeLogin">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Please log in to submit a Digimon:</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">Username:</label>
+                        <input type="text" id="loginUsername" required>
+                        <div class="error-message" id="loginError"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Login</button>
+                        <button type="button" id="goToRegister" class="secondary-btn">Register Instead</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
